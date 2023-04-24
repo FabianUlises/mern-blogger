@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const app = express();
 // Mongoose connection
 mongoose.connect(process.env.LOCAL_DB, {
@@ -14,6 +15,7 @@ mongoose.connect(process.env.LOCAL_DB, {
 });
 // Middleware
 app.use(express.json());
+app.use(cors());
 // Routers
 app.use('/api/v1/posts', require('./routes/postRoutes'));
 // Catch all route
