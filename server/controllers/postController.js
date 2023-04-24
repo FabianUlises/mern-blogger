@@ -19,6 +19,9 @@ exports.create = async(req, res) => {
             data: newPost
         });
     } catch(err) {
-        console.error(`Error: ${err}`);
+        res.status(400).json({
+            status: 'fail',
+            error: err
+        });
     }
 };
