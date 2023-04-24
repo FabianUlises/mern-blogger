@@ -12,24 +12,14 @@ mongoose.connect(process.env.LOCAL_DB, {
 }).catch((err) => {
     console.error('Error: ', err);
 });
-// Root route
-app.get('/', (req, res) => {
-    try {
-        res.status(200).json({
-            status: 'Success',
-            message: '/ root route',
-            data: 'root get route'
-        });
-    } catch(err) {
-        console.error(`Error: ${err}`);
-    }
-});
+// Routers
+app.use('/api/v1/posts', require('./routes/postRoutes'));
 // Catch all route
 app.get('*', (req, res) => {
     try {
         res.status(200).json({
             status: 'Success',
-            message: 'Catch all route',
+            message: 'The route you are looking for doesn\'t exist',
             data: null
         });
     } catch(err) {
