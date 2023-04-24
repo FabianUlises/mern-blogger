@@ -19,6 +19,21 @@ exports.getPosts = async(req, res) => {
         });
     }
 };
+exports.getPost = async(req, res) => {
+    try {
+        const {slug} = req.params;
+        const singlePost = await Post.findOne({slug: slug});
+        res.status(200).json({
+            status: 'success',
+            data: singlePost
+        });
+    } catch(err) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Unable to get post'
+        });
+    }
+};
 // Create post route
 exports.create = async(req, res) => {
     try {
