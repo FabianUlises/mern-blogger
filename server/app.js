@@ -12,6 +12,8 @@ mongoose.connect(process.env.LOCAL_DB, {
 }).catch((err) => {
     console.error('Error: ', err);
 });
+// Middleware
+app.use(express.json());
 // Routers
 app.use('/api/v1/posts', require('./routes/postRoutes'));
 // Catch all route
