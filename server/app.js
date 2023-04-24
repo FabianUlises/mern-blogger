@@ -21,11 +21,13 @@ app.get('*', (req, res) => {
     try {
         res.status(200).json({
             status: 'Success',
-            message: 'The route you are looking for doesn\'t exist',
-            data: null
+            message: 'The route you are looking for doesn\'t exist'
         });
     } catch(err) {
-        console.error(`Error: ${err}`);
+        res.status(400).json({
+            status: 'fail',
+            error: err
+        });
     }
 });
 // Server on
