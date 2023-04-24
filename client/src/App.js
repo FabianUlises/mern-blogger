@@ -1,5 +1,6 @@
 // Dependencies
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 // Components
 import Nav from './components/nav/Nav';
 // Styles
@@ -11,7 +12,7 @@ function App() {
   // Fetching posts api
   const getData = async() => {
     // Making fetch requests
-    const res = await fetch('http://localhost:4001/api/v1/posts/all');
+    const res = await fetch('http://localhost:4001/api/v1/posts');
     const data = await res.json();
     return data;
   };
@@ -25,8 +26,11 @@ function App() {
   // Looping through state to render posts
   const displayPosts = posts === null ? 'loading posts' : posts.map((post) => (
       <div className='blog-post'>
-        <h4>Blog title</h4>
-        <p>Blog content</p>
+        <Link to={`/post/${post.slug}`}>
+          <h4 className='post-title'>{post.title}</h4>
+        </Link>
+        <p className='post-content'>{post.content.substring(0, 15)}</p>
+        <p className='post-info'>Author <span>{post.user}</span> Published on<span> {new Date(post.createdAt).toLocaleString()}</span></p>
       </div>
   ));
   return (
