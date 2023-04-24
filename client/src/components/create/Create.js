@@ -6,7 +6,7 @@ const Create = () => {
     const [post, setPost] = useState({
         title: '',
         content: '',
-        role: ''
+        user: ''
     });
     // Function to post data to db
     const postData = async(e) => {
@@ -25,7 +25,7 @@ const Create = () => {
                 setPost({
                     title: '',
                     content: '',
-                    role: ''
+                    user: ''
                 });
             }
         } catch(err) {
@@ -46,7 +46,7 @@ const Create = () => {
             </div>
             <div className='form-group'>
                 <label for='postUser' className='form-label'>User</label>
-                <input value={post.role} type='text' placeholder='Username' required className='form-input' id='postUser' onChange={(e) => setPost({...post, role: e.target.value})} />
+                <input value={post.user} type='text' placeholder='Username' required className='form-input' id='postUser' onChange={(e) => setPost({...post, user: e.target.value})} />
             </div>
             <div className='form-btn-container'>
                 <button type='submit' className='form-btn-submit' onClick={postData}>Submit</button>

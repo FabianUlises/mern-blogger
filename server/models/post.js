@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema({
         min: 20,
         max: 2000000
     },
-    role: {
+    user: {
         type: String,
         default: 'Admin'
     },

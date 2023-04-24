@@ -13,7 +13,7 @@ exports.create = async(req, res) => {
             return;
         }
         const slug = slugify(req.body.title);
-        const newPost = await Post.create({ title: req.body.title, content: req.body.content, role: req.body.role, slug: slug });
+        const newPost = await Post.create({ title: req.body.title, content: req.body.content, role: req.body.user, slug: slug });
         res.status(200).json({
             status: 'Success',
             data: newPost
