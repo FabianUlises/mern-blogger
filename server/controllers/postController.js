@@ -19,6 +19,7 @@ exports.getPosts = async(req, res) => {
         });
     }
 };
+// Get single post route
 exports.getPost = async(req, res) => {
     try {
         const {slug} = req.params;
