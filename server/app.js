@@ -14,19 +14,27 @@ mongoose.connect(process.env.LOCAL_DB, {
 });
 // Root route
 app.get('/', (req, res) => {
-    res.status(200).json({
-        status: 'Success',
-        message: '/ root route',
-        data: 'root get route'
-    });
+    try {
+        res.status(200).json({
+            status: 'Success',
+            message: '/ root route',
+            data: 'root get route'
+        });
+    } catch(err) {
+        console.error(`Error: ${err}`);
+    }
 });
 // Catch all route
 app.get('*', (req, res) => {
-    res.status(200).json({
-        status: 'Success',
-        message: 'Catch all route',
-        data: null
-    });
+    try {
+        res.status(200).json({
+            status: 'Success',
+            message: 'Catch all route',
+            data: null
+        });
+    } catch(err) {
+        console.error(`Error: ${err}`);
+    }
 });
 // Server on
 app.listen(
