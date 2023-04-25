@@ -79,3 +79,20 @@ exports.updatePost = async(req, res) => {
         });
     }
 };
+// Delete post route
+exports.deletePost = async(req, res) => {
+    const {slug} = req.params;
+    try {
+        const deletedPost = await Post.findOneAndDelete({slug});
+        res.status(200).json({
+            status: 'success',
+            data: null
+        });
+    } catch(err) {
+        res.status(400).json({
+            status: 'fail',
+            message: 'Could not delete post',
+            error: err
+        });
+    }
+};

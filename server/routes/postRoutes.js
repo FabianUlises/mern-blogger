@@ -8,4 +8,5 @@ router.get('/', postController.getPosts);
 router.get('/:slug', postController.getPost);
 router.post('/', postController.create);
 router.patch('/:slug/update', postController.updatePost);
+router.delete('/:slug', postController.deletePost);
 module.exports = router;
