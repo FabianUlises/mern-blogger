@@ -22,13 +22,13 @@ app.use('/api/v1/posts', require('./routes/postRoutes'));
 app.get('*', (req, res) => {
     try {
         res.status(200).json({
-            status: 'Success',
+            status: 'fail',
             message: 'The route you are looking for doesn\'t exist'
         });
     } catch(err) {
         res.status(400).json({
             status: 'fail',
-            error: err
+            error: 'Error unable to handle request', err
         });
     }
 });
