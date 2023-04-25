@@ -65,13 +65,13 @@ exports.createPost = async(req, res) => {
 exports.updatePost = async(req, res) => {
     // Slug
     const {slug} = req.params;
+    console.log(slug);
     try {
-        const slug = slugify(req.body.title);
         const {title, content, user} = req.body;
         const updatedPost = await Post.findOneAndUpdate({slug}, {title, content, user}, {new: true});
         res.status(200).json({
-            status: 'success',
-            data: updatedPost
+            status: 'success'
+            // data: updatedPost
         });
     } catch(err) {
         res.status(400).json({
