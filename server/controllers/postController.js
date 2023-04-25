@@ -23,7 +23,7 @@ exports.getPosts = async(req, res) => {
 exports.getPost = async(req, res) => {
     try {
         const {slug} = req.params;
-        const singlePost = await Post.findOne({slug: slug});
+        const singlePost = await Post.findOne({slug});
         res.status(200).json({
             status: 'success',
             data: singlePost
