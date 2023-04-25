@@ -36,7 +36,7 @@ exports.getPost = async(req, res) => {
     }
 };
 // Create post route
-exports.create = async(req, res) => {
+exports.createPost = async(req, res) => {
     try {
         // Making sure input is not empty
         if(req.body.content === '' || req.body.title === '') {
@@ -66,6 +66,7 @@ exports.updatePost = async(req, res) => {
     // Slug
     const {slug} = req.params;
     try {
+        const slug = slugify(req.body.title);
         const {title, content, user} = req.body;
         const updatedPost = await Post.findOneAndUpdate({slug}, {title, content, user}, {new: true});
         res.status(200).json({
