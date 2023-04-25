@@ -1,7 +1,8 @@
 // Dependencies
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
+// Components
+import Nav from './../nav/Nav';
 const SinglePost = () => {
     // Req params
     const { slug } = useParams();
@@ -29,6 +30,7 @@ const SinglePost = () => {
     );
     return (
         <>
+            <Nav />
             {displayPost}
         </>
     )
