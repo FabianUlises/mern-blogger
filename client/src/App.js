@@ -8,18 +8,20 @@ function App() {
   const [posts, setPosts] = useState(null);
   // Fetching posts api
   const getData = async() => {
-    // Making fetch requests
-    const res = await fetch('http://localhost:4001/api/v1/posts');
-    const data = await res.json();
-    return data;
+    try {
+      // Making fetch requests
+      const res = await fetch('http://localhost:4001/api/v1/posts');
+      const data = await res.json();
+      // Updating state
+      setPosts(data.data);
+    } catch(err) {
+      console.log('Unable to make request', err);
+    }
   };
   // Useeffect
   useEffect(() => {
     // Getting data from api
-    getData()
-      .then((data) => {
-        setPosts(data.data);
-      });
+    getData();
   }, []);
   // Making delete fetch request to api
   const handleDelete = async(e, slug) => {
@@ -30,11 +32,7 @@ function App() {
         method: 'DELETE'
       });
       // Getting data from api
-      getData()
-        .then((data) => {
-          setPosts(data.data)
-        })
-        .catch((err) => console.log('Unable to get updated data', err));
+      getData();
     } catch(err) {
       console.log('Unable to make delete request', err);
     }
