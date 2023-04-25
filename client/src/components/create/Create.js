@@ -13,7 +13,6 @@ const Create = () => {
         console.log('button pressed');
         e.preventDefault();
         try {
-            console.log('fetching post request');
             // Fetching for post request
             const res = await fetch('http://localhost:4001/api/v1/posts', {
                 method: 'POST',
@@ -21,7 +20,6 @@ const Create = () => {
                 body: JSON.stringify(post)
             })
             if(res.status === 200) {
-                console.log('posted');
                 setPost({
                     title: '',
                     content: '',
@@ -29,7 +27,6 @@ const Create = () => {
                 });
             }
         } catch(err) {
-            console.log('not posted');
             console.error('Unable to post data: ', err);
         }
     }
@@ -55,5 +52,4 @@ const Create = () => {
     </div>
 )
 };
-
 export default Create;
