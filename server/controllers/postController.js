@@ -90,12 +90,13 @@ exports.updatePost = async(req, res) => {
 };
 // Delete post route
 exports.deletePost = async(req, res) => {
+    // Getting slug from request params
     const {slug} = req.params;
     try {
+        // Making delete fetch request
         const deletedPost = await Post.findOneAndDelete({slug});
         res.status(200).json({
-            status: 'success',
-            data: null
+            status: 'success'
         });
     } catch(err) {
         res.status(400).json({
