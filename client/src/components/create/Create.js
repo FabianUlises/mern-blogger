@@ -10,7 +10,6 @@ const Create = () => {
     });
     // Function to post data to db
     const postData = async(e) => {
-        console.log('button pressed');
         e.preventDefault();
         try {
             // Fetching for post request
@@ -18,7 +17,8 @@ const Create = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(post)
-            })
+            });
+            console.log(res);
             if(res.status === 200) {
                 setPost({
                     title: '',
@@ -46,7 +46,7 @@ const Create = () => {
                 <input value={post.user} type='text' placeholder='Username' required className='form-input' id='postUser' onChange={(e) => setPost({...post, user: e.target.value})} />
             </div>
             <div className='form-btn-container'>
-                <button type='submit' className='form-btn-submit' onClick={postData}>Submit</button>
+                <button type='submit' className='form-btn-submit' onClick={(e) => postData(e)}>Submit</button>
             </div>
         </form>
     </div>

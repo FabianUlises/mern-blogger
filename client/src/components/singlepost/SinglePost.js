@@ -12,18 +12,14 @@ const SinglePost = () => {
         // Making fetch request
         const res = await fetch(`http://localhost:4001/api/v1/posts/${slug}`);
         const data = await res.json();
-        return data.data;
+        // Updating state with fetched data
+        setPost(data.data);
     };
     useEffect(() => {
+        // Getting data
         getData()
-            .then((data) => {
-                console.log(data);
-                setPost(data);
-            })
-            .catch((err) => {
-                console.log('Error unable to get post');
-            })
     }, []);
+    // Variable to render post if any
     const displayPost = post === null ? 'Loading post' : (
         <div className='single-post'>
             <h4>{post.title}</h4>

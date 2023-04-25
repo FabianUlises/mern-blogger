@@ -72,6 +72,14 @@ exports.updatePost = async(req, res) => {
     try {
         // Getting values from request
         const {title, content, user} = req.body;
+        // Making sure input is not empty
+        if(content === '' || title === '') {
+            res.status(400).json({
+                status: 'fail',
+                error: 'Content and a title is required'
+            });
+            return;
+        }
         // Creating new slug
         const newSlug = slugify(title);
         // Updating post
