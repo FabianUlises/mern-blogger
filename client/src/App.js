@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // Components
 import Nav from './components/nav/Nav';
-// Styles
-import './App.css';
-
 function App() {
   // State
   const [posts, setPosts] = useState(null);
@@ -18,6 +15,7 @@ function App() {
   };
   // Useeffect
   useEffect(() => {
+    // Getting data from api
     getData()
       .then((data) => {
         setPosts(data.data);
@@ -27,9 +25,11 @@ function App() {
   const handleDelete = async(e, slug) => {
     e.preventDefault();
     try {
+      // Making request using slug property
       const res = await fetch(`http://localhost:4001/api/v1/posts/${slug}`, {
         method: 'DELETE'
       });
+      // Getting data from api
       getData()
         .then((data) => {
           setPosts(data.data)
