@@ -38,7 +38,7 @@ function App() {
     }
   };
   // Looping through state to render posts
-  const displayPosts = posts === null ? 'loading posts' : posts.map((post) => (
+  const displayPosts = posts === null || !posts.length ? 'No posts' : posts.map((post) => (
       <div className='blog-post post'>
         <div className='post__content'>
           <Link to={`/post/${post.slug}`}>
