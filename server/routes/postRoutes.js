@@ -7,4 +7,5 @@ const postController = require('./../controllers/postController.js')
 router.get('/', postController.getPosts);
 router.get('/:slug', postController.getPost);
 router.post('/', postController.create);
+router.patch('/:slug/update', postController.updatePost);
 module.exports = router;

@@ -61,3 +61,21 @@ exports.create = async(req, res) => {
         });
     }
 };
+// Update post route
+exports.updatePost = async(req, res) => {
+    // Slug
+    const {slug} = req.params;
+    try {
+        const {title, content, user} = req.body;
+        const updatedPost = await Post.findOneAndUpdate({slug}, {title, content, user}, {new: true});
+        res.status(200).json({
+            status: 'success',
+            data: updatedPost
+        });
+    } catch(err) {
+        res.status(400).json({
+            status: 'fail',
+            error: err
+        });
+    }
+};

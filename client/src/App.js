@@ -25,12 +25,18 @@ function App() {
   }, []);
   // Looping through state to render posts
   const displayPosts = posts === null ? 'loading posts' : posts.map((post) => (
-      <div className='blog-post'>
-        <Link to={`/post/${post.slug}`}>
-          <h4 className='post-title'>{post.title}</h4>
-        </Link>
-        <p className='post-content'>{post.content.substring(0, 15)}</p>
-        <p className='post-info'>Author <span>{post.user}</span> Published on<span> {new Date(post.createdAt).toLocaleString()}</span></p>
+      <div className='blog-post post'>
+        <div className='post__content'>
+          <Link to={`/post/${post.slug}`}>
+            <h4 className='post-title'>{post.title}</h4>
+          </Link>
+          <p className='post-content'>{post.content.substring(0, 15)}</p>
+          <p className='post-info'>Author <span>{post.user}</span> Published on<span> {new Date(post.createdAt).toLocaleString()}</span></p>
+        </div>
+        <div className='post__btns'>
+          <Link to={`/post/update/${post.slug}`}>Update</Link>
+          <button className='btn form-btn-delete'>Delete</button>
+        </div>
       </div>
   ));
   return (
