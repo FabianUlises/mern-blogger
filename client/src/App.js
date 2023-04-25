@@ -23,6 +23,22 @@ function App() {
         setPosts(data.data);
       });
   }, []);
+  // Making delete fetch request to api
+  const handleDelete = async(e, slug) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(`http://localhost:4001/api/v1/posts/${slug}`, {
+        method: 'DELETE'
+      });
+      getData()
+        .then((data) => {
+          setPosts(data.data)
+        })
+        .catch((err) => console.log('Unable to get updated data', err));
+    } catch(err) {
+      console.log('Unable to make delete request', err);
+    }
+  };
   // Looping through state to render posts
   const displayPosts = posts === null ? 'loading posts' : posts.map((post) => (
       <div className='blog-post post'>
@@ -35,7 +51,7 @@ function App() {
         </div>
         <div className='post__btns'>
           <Link to={`/post/update/${post.slug}`}>Update</Link>
-          <button className='btn form-btn-delete'>Delete</button>
+          <button className='btn form-btn-delete' onClick={(e) => handleDelete(e, post.slug)}>Delete</button>
         </div>
       </div>
   ));
