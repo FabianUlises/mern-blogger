@@ -15,14 +15,17 @@ exports.getPosts = async(req, res) => {
     } catch(err) {
         res.status(400).json({
             status: 'faill',
-            message: 'unable to get posts'
+            message: 'unable to get posts',
+            error: err
         });
     }
 };
 // Get single post route
 exports.getPost = async(req, res) => {
     try {
+        // Getting slug from request params
         const {slug} = req.params;
+        // Getting single post from api
         const singlePost = await Post.findOne({slug});
         res.status(200).json({
             status: 'success',
@@ -31,7 +34,8 @@ exports.getPost = async(req, res) => {
     } catch(err) {
         res.status(400).json({
             status: 'fail',
-            message: 'Unable to get post'
+            message: 'Unable to get post',
+            error: err
         });
     }
 };
@@ -63,19 +67,23 @@ exports.createPost = async(req, res) => {
 };
 // Update post route
 exports.updatePost = async(req, res) => {
-    // Slug
+    // Getting slug from request params
     const {slug} = req.params;
-    console.log(slug);
     try {
+        // Getting values from request
         const {title, content, user} = req.body;
-        const updatedPost = await Post.findOneAndUpdate({slug}, {title, content, user}, {new: true});
+        // Creating new slug
+        const newSlug = slugify(title);
+        // Updating post
+        const updatedPost = await Post.findOneAndUpdate({slug}, {title, content, user, slug: newSlug}, {new: true});
         res.status(200).json({
-            status: 'success'
-            // data: updatedPost
+            status: 'success',
+            data: updatedPost
         });
     } catch(err) {
         res.status(400).json({
             status: 'fail',
+            message: 'Unable to update post',
             error: err
         });
     }
