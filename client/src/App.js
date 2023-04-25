@@ -28,7 +28,7 @@ function App() {
     e.preventDefault();
     try {
       // Making request using slug property
-      const res = await fetch(`http://localhost:4001/api/v1/posts/${slug}`, {
+      await fetch(`http://localhost:4001/api/v1/posts/${slug}`, {
         method: 'DELETE'
       });
       // Getting data from api
