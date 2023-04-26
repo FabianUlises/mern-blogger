@@ -1,6 +1,7 @@
 // Dependencies
 import React, { useState } from 'react';
-
+// Components
+import Nav from '../nav/Nav';
 const Login = () => {
     // State
     const [user, setUser] = useState({
@@ -10,6 +11,7 @@ const Login = () => {
     });
     return (
         <div>
+            <Nav />
             <form className='page-form'>
                 <div className='form-group'>
                     <label for='userEmail' className='form-label'>Email</label>
