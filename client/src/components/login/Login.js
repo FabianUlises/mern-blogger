@@ -9,6 +9,11 @@ const Login = () => {
         name: '',
         password: ''
     });
+    // Handle login submit request
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log({user});
+    };
     return (
         <div>
             <Nav />
@@ -26,7 +31,7 @@ const Login = () => {
                     <input value={user.password} type='password' placeholder='password' required className='form-input' id='userPassword' onChange={(e) => setUser({...user, password: e.target.value})} />
                 </div>
                 <div className='form-btn-container'>
-                    <button type='submit' className='form-btn-submit'>Submit</button>
+                    <button type='submit' className='form-btn-submit' onClick={handleSubmit}>Submit</button>
                 </div>
             </form>
         </div>
