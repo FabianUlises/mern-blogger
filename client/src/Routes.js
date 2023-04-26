@@ -6,6 +6,7 @@ import App from './App.js';
 import Create from './components/create/Create.js';
 import SinglePost from './components/singlepost/SinglePost.js';
 import UpdatePost from './components/updatepost/UpdatePost.js';
+import Login from './components/login/Login.js';
 const AppRouter = () => {
     return (
         <BrowserRouter>
@@ -14,6 +15,7 @@ const AppRouter = () => {
                 <Route path="/create" exact Component={Create} />
                 <Route path='/post/:slug' exact Component={SinglePost} />
                 <Route path='/post/update/:slug' exact Component={UpdatePost} />
+                <Route path='/login' exact Component={Login} />
             </Routes>
         </BrowserRouter>
     );
